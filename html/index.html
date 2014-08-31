@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Draft Order</title>
+    <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans+SC:700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Contrail+One' rel='stylesheet' type='text/css'>
+
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- main css -->
+    <link href="../css/main.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container" role="main">
+        <div class="row">
+            <div class="col-md-2 panel left-panel">
+                <h1 class="page-header">Enter teams:</h1>
+                <form id="form" onsubmit="return false;">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Team Name" id="teamName">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit" onclick="getLeague()" >Submit</button>
+                        </span>
+                    </div>
+                </form>
+
+                <div class="unordered" id="one"></div>
+                <div class="unordered" id="two"></div>
+                <div class="unordered" id="three"></div>
+                <div class="unordered" id="four"></div>
+                <div class="unordered" id="five"></div>
+                <div class="unordered" id="six"></div>
+                <div class="unordered" id="seven"></div>
+                <div class="unordered" id="eight"></div>
+                <div class="unordered" id="nine"></div>
+                <div class="unordered" id="ten"></div>
+                <div class="unordered" id="eleven" ></div>
+                <div class="unordered" id="twelve"></div>
+
+                <form id="form" onsubmit="return false;">
+                    <button class="button" type="submit" onclick="randomizeTeams(teams)">Randomize!</button>
+                </form>
+
+            </div>
+
+            <div class="col-md-8 panel main-panel">
+                <div class="page-header main">
+                    <h1>SEAN'S TOTALLY-AWESOME FANTASY FOOTBALL DRAFT ORDER RANDOMIFICATION GENERATOR!</h1>
+                </div>
+                <div class="main-display">
+                    #10
+                </div>
+            </div>
+
+            <div class="col-md-2 panel right-panel">
+                <h1 class="page-header">Draft Order</h1>
+
+                <div class="ordered first">1.</div>
+                <div class="ordered second">2.</div>
+                <div class="ordered third">3.</div>
+                <div class="ordered fourth">4.</div>
+                <div class="ordered fifth">5.</div>
+                <div class="ordered sixth">6.</div>
+                <div class="ordered seventh">7.</div>
+                <div class="ordered eighth">8.</div>
+                <div class="ordered ninth">9.</div>
+                <div class="ordered tenth">10.</div>
+                <div class="ordered eleventh">11.</div>
+                <div class="ordered twelfth">12.</div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        var teams = [];
+
+        function getLeague() {
+            var teamName = document.getElementById('teamName').value;
+            teams.push(teamName);
+            console.log(teams);
+            document.getElementById('teamName').value = '';
+            document.getElementById('one').textContent = teams[0];
+            document.getElementById('two').textContent = teams[1];
+            document.getElementById('three').textContent = teams[2];
+            document.getElementById('four').textContent = teams[3];
+            document.getElementById('five').textContent = teams[4];
+            document.getElementById('six').textContent = teams[5];
+            document.getElementById('seven').textContent = teams[6];
+            document.getElementById('eight').textContent = teams[7];
+            document.getElementById('nine').textContent = teams[8];
+            document.getElementById('ten').textContent = teams[9];
+            document.getElementById('eleven').textContent = teams[10];
+            document.getElementById('twelve').textContent = teams[11];
+        }
+
+
+        function randomizeTeams(array) {
+            var randomizedList = [];
+            while (array.length > 0) {
+                var randomNum = Math.ceil(Math.random() * array.length);
+                var randomTeam = array.splice(randomNum - 1, 1);
+                randomizedList.push(randomTeam[0]);
+            }
+
+            function displayList(list) {
+                var i = 1;
+                var j = randomizedList.length;
+
+                (function iterator1() {
+                    console.log(j);
+
+                    function iterator2() {
+                        console.log(randomizedList[j-1]);
+
+                        if (--j >= i) {
+                            setTimeout(iterator1, 500);
+                        }
+                    }
+
+                    if (j >= i) {
+                        setTimeout(iterator2, 500);
+                    }
+                })();
+            }
+
+            return displayList(randomizedList);
+        }
+
+        randomizeTeams(teams);
+
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+
+</body>
+</html>
