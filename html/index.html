@@ -51,26 +51,26 @@
                 <div class="page-header main">
                     <h1>SEAN'S TOTALLY-AWESOME FANTASY FOOTBALL DRAFT ORDER RANDOMIFICATION GENERATOR!</h1>
                 </div>
-                <div class="main-display">
-                    #10
+                <div id="main-display">
+
                 </div>
             </div>
 
             <div class="col-md-2 panel right-panel">
-                <h1 class="page-header">Draft Order</h1>
+                <h1 class="page-header" onclick="displayFinalList(randomizedList)">Draft Order</h1>
 
-                <div class="ordered first">1.</div>
-                <div class="ordered second">2.</div>
-                <div class="ordered third">3.</div>
-                <div class="ordered fourth">4.</div>
-                <div class="ordered fifth">5.</div>
-                <div class="ordered sixth">6.</div>
-                <div class="ordered seventh">7.</div>
-                <div class="ordered eighth">8.</div>
-                <div class="ordered ninth">9.</div>
-                <div class="ordered tenth">10.</div>
-                <div class="ordered eleventh">11.</div>
-                <div class="ordered twelfth">12.</div>
+                <div class="ordered" id="first"></div>
+                <div class="ordered" id="second"></div>
+                <div class="ordered" id="third"></div>
+                <div class="ordered" id="fourth"></div>
+                <div class="ordered" id="fifth"></div>
+                <div class="ordered" id="sixth"></div>
+                <div class="ordered" id="seventh"></div>
+                <div class="ordered" id="eighth"></div>
+                <div class="ordered" id="ninth"></div>
+                <div class="ordered" id="tenth"></div>
+                <div class="ordered" id="eleventh"></div>
+                <div class="ordered" id="twelfth"></div>
             </div>
         </div>
 
@@ -81,6 +81,7 @@
     <script>
 
         var teams = [];
+        var randomizedList = [];
 
         function getLeague() {
             var teamName = document.getElementById('teamName').value;
@@ -103,7 +104,7 @@
 
 
         function randomizeTeams(array) {
-            var randomizedList = [];
+
             while (array.length > 0) {
                 var randomNum = Math.ceil(Math.random() * array.length);
                 var randomTeam = array.splice(randomNum - 1, 1);
@@ -116,23 +117,44 @@
 
                 (function iterator1() {
                     console.log(j);
+                    document.getElementById('main-display').innerText = "#" + j;
 
                     function iterator2() {
                         console.log(randomizedList[j-1]);
+                        document.getElementById('main-display').innerText = list[j - 1];
 
                         if (--j >= i) {
-                            setTimeout(iterator1, 500);
+                            setTimeout(iterator1, 2000);
                         }
                     }
 
                     if (j >= i) {
-                        setTimeout(iterator2, 500);
+                        setTimeout(iterator2, 2000);
                     }
                 })();
+
+
             }
 
             return displayList(randomizedList);
+
         }
+
+        function displayFinalList(list) {
+            document.getElementById('first').textContent = list[0];
+            document.getElementById('second').textContent = list[1];
+            document.getElementById('third').textContent = list[2];
+            document.getElementById('fourth').textContent = list[3];
+            document.getElementById('fifth').textContent = list[4];
+            document.getElementById('sixth').textContent = list[5];
+            document.getElementById('seventh').textContent = list[6];
+            document.getElementById('eighth').textContent = list[7];
+            document.getElementById('ninth').textContent = list[8];
+            document.getElementById('tenth').textContent = list[9];
+            document.getElementById('eleventh').textContent = list[10];
+            document.getElementById('twelfth').textContent = list[11];
+        }
+
 
         randomizeTeams(teams);
 
